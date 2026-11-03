@@ -67,7 +67,7 @@ export const newArrivals = (n = 6): Offer[] =>
     .slice(0, n);
 
 /**
- * "Use your expiring points" — custom algorithm: items within balance, sized
+ * "Use expiring points" — custom algorithm: items within balance, sized
  * to the expiring amount (so a 24,000-point expiry suggests dinners and
  * coffee, not a MacBook), ordered by affinity and user margin, one per brand.
  */
@@ -159,17 +159,17 @@ export function transferToAfford(o: Offer, ctx: RankContext): { partner: Offer; 
 /* ------------------------------------------------------------------ */
 
 const liveBannerCopy: Record<string, { title: string; body: string; cta: string; chip: string; icon: string }> = {
-  Beauty: { title: 'Beauty picks within reach', body: 'A Watsons e-Coupon fits your points today; SK-II and TOM FORD are 40% off in points with Point+Money. Sephora gives 20% points back when you scan.', cta: 'See beauty in X Store', chip: 'x-beauty', icon: 'spa' },
-  'Mobile & Gadgets': { title: 'Gadgets, your way', body: 'Redmi Buds are the closest at 3,590 points — move your 3,200 AIS Points across and they’re yours. AirPods 5 work with Point+Money.', cta: 'See gadgets', chip: 'x-mobile', icon: 'headphones' },
-  'Food & Beverage': { title: 'Coffee first?', body: 'Starbucks and Café Amazon e-Coupons fit your 1,250 points — and Café Amazon gives 30% points back when you scan.', cta: 'See food & drink', chip: 'x-ecoupon', icon: 'coffee' },
-  Dining: { title: 'Dinner plans, sorted', body: 'Eat Around restaurants take Point+Money — Shabushi from 6,238 points, Copper with a small top-up.', cta: 'See Eat Around', chip: 'x-dining', icon: 'restaurant' },
-  'Health & Wellness': { title: 'Feel-good picks', body: 'Bewell yoga mat and Let’s Relax massage work with Point+Money — the massage is 40% off in points tonight only.', cta: 'See health', chip: 'x-health', icon: 'self_improvement' },
-  'Home Appliances': { title: 'Upgrade home for points', body: 'Air purifiers up to 30% off in points this week; Point+Money covers the rest.', cta: 'See home appliances', chip: 'x-home', icon: 'air' },
-  Kitchen: { title: 'Kitchen upgrades', body: 'Seagull and Tefal in X Store — Point+Money makes them yours today.', cta: 'See kitchen', chip: 'x-kitchen', icon: 'cooking' },
-  Entertainment: { title: 'Movie night for points', body: 'Major Cineplex ticket e-Coupon is 2,700 points — or scan & pay at Major for 15% points back.', cta: 'See entertainment', chip: 'x-entertainment', icon: 'theaters' },
-  Travel: { title: 'Trips with POINTX', body: 'XTravel stays give up to 30,000 POINTX back, and lounges accept scan & pay.', cta: 'See travel', chip: 'x-travel', icon: 'flight_takeoff' },
-  Fashion: { title: 'Fashion for points', body: 'Scan & pay at H&M, Uniqlo and Pomelo — 12.5 points = ฿1, or Point+Money.', cta: 'See fashion shops', chip: 's-fashion', icon: 'checkroom' },
-  'Kid & Mom': { title: 'For the little ones', body: 'LEGO, Pampers and Avent in X Store — Point+Money covers the rest.', cta: 'See Kid & Mom', chip: 'x-kids', icon: 'child_care' },
+  Beauty: { title: 'Beauty picks within reach', body: 'Watsons e-Coupon fits your points; SK-II is 40% off with Point+Money.', cta: 'See beauty in X Store', chip: 'x-beauty', icon: 'spa' },
+  'Mobile & Gadgets': { title: 'Gadgets, your way', body: 'Redmi Buds are 3,590 points — your AIS Points would cover them.', cta: 'See gadgets', chip: 'x-mobile', icon: 'headphones' },
+  'Food & Beverage': { title: 'Coffee first?', body: 'Starbucks and Café Amazon e-Coupons fit your points today.', cta: 'See food & drink', chip: 'x-ecoupon', icon: 'coffee' },
+  Dining: { title: 'Dinner plans, sorted', body: 'Eat Around takes Point+Money — Shabushi from 6,238 points.', cta: 'See Eat Around', chip: 'x-dining', icon: 'restaurant' },
+  'Health & Wellness': { title: 'Feel-good picks', body: 'Let’s Relax massage is 40% off in points tonight only.', cta: 'See health', chip: 'x-health', icon: 'self_improvement' },
+  'Home Appliances': { title: 'Upgrade home for points', body: 'Air purifiers up to 30% off in points this week.', cta: 'See home appliances', chip: 'x-home', icon: 'air' },
+  Kitchen: { title: 'Kitchen upgrades', body: 'Seagull and Tefal — Point+Money makes them yours today.', cta: 'See kitchen', chip: 'x-kitchen', icon: 'cooking' },
+  Entertainment: { title: 'Movie night for points', body: 'Major Cineplex ticket is 2,700 points, or 15% back when you scan.', cta: 'See entertainment', chip: 'x-entertainment', icon: 'theaters' },
+  Travel: { title: 'Trips with POINTX', body: 'XTravel stays give up to 30,000 POINTX back.', cta: 'See travel', chip: 'x-travel', icon: 'flight_takeoff' },
+  Fashion: { title: 'Fashion for points', body: 'Scan & pay at H&M, Uniqlo and Pomelo — 12.5 points = ฿1.', cta: 'See fashion shops', chip: 's-fashion', icon: 'checkroom' },
+  'Kid & Mom': { title: 'For the little ones', body: 'LEGO, Pampers and Avent — Point+Money covers the rest.', cta: 'See Kid & Mom', chip: 'x-kids', icon: 'child_care' },
 };
 
 export function liveBanner(topAffinity: string): (Banner & { chip: string }) | null {

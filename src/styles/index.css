@@ -130,13 +130,13 @@ body {
   }
 }
 
-/* Lift tiny caption text for presentation readability. */
+/* Lift tiny caption text slightly for presentation readability. */
 [class*='text-[10px]'] {
-  font-size: 12px !important;
+  font-size: 11px !important;
   line-height: 1.25 !important;
 }
 [class*='text-[11px]'] {
-  font-size: 13px !important;
+  font-size: 12px !important;
   line-height: 1.3 !important;
 }
 

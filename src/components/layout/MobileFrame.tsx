@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { cn } from '@/hooks/utils';
 import { Icon } from '@/components/ui/Icon';
 
@@ -25,15 +25,31 @@ function StatusBar({ dark }: { dark?: boolean }) {
   );
 }
 
+/** Design width of the phone; the whole device is scaled (not reflowed) to fit short windows. */
+const FRAME_WIDTH = 420;
+const FRAME_HEIGHT = FRAME_WIDTH * (19.5 / 9) + 20;
+
+function useFrameScale(): number {
+  const [scale, setScale] = useState(1);
+  useEffect(() => {
+    const update = () => setScale(Math.min(1, Math.max(0.55, (window.innerHeight - 112) / FRAME_HEIGHT)));
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+  return scale;
+}
+
 /**
  * Renders a phone frame with a Dynamic Island, status bar and home indicator.
  * Children flow below the status bar; drawers/modals are contained within the
  * device viewport.
  */
 export function MobileFrame({ children, className, dark, barClass }: MobileFrameProps) {
+  const scale = useFrameScale();
   return (
-    <div className={cn('relative mx-auto w-full select-none', className)} style={{ maxWidth: 'min(420px, calc((100vh - 7.5rem) * 9 / 19.5))' }}>
-      <div className="relative rounded-[52px] bg-[#1c1c22] p-[10px] shadow-frame">
+    <div className={cn('relative mx-auto select-none', className)} style={{ width: FRAME_WIDTH * scale, height: FRAME_HEIGHT * scale }}>
+      <div className="relative origin-top-left rounded-[52px] bg-[#1c1c22] p-[10px] shadow-frame" style={{ width: FRAME_WIDTH, transform: `scale(${scale})` }}>
         <div className="relative aspect-[9/19.5] overflow-hidden rounded-[44px] bg-surface">
           <div className="pointer-events-none absolute left-1/2 top-2.5 z-50 h-7 w-28 -translate-x-1/2 rounded-full bg-black" />
           <div className="relative flex h-full flex-col">

@@ -122,16 +122,18 @@ export function XStoreScreen() {
 
         <SortIndicator
           live={sortMode === 'dy' && !!live && !gift && !result.fallback}
-          label={result.fallback || gift ? 'Default order · most redeemed first' : sortMode === 'dy' ? (live ? `Sorted for you · ${live.replace(/^brand:/, '')} first` : points < 20000 ? 'Sorted for you · within your points first' : 'Sorted for you · your taste + best value per point') : 'POINTX today · newest first, no filtering'}
+          label={result.fallback || gift ? 'Default order · most redeemed first' : sortMode === 'dy' ? (live ? `Sorted for you · ${live.replace(/^brand:/, '')} first` : points < 20000 ? 'Sorted for you · within your points first' : 'Sorted for you · your taste + value') : 'POINTX today · newest first, no filtering'}
           onWhy={openWhy}
         />
 
-        <div className="flex items-center justify-between text-[12px] text-on-surface-variant">
-          <span>{result.title}</span>
+        <div className="flex items-center justify-between gap-2 text-[12px] text-on-surface-variant">
+          <span className="shrink-0">{result.title}</span>
           {sortMode === 'dy' && result.excluded.length > 0 && (
-            <button type="button" onClick={openWhy} className="flex items-center gap-1 font-medium">
-              <Icon name="visibility_off" className="text-[14px]" />
-              {result.excluded.length} hidden · {hiddenSummary}
+            <button type="button" onClick={openWhy} className="flex min-w-0 items-center gap-1 font-medium">
+              <Icon name="visibility_off" className="shrink-0 text-[14px]" />
+              <span className="truncate">
+                {result.excluded.length} hidden · {hiddenSummary}
+              </span>
             </button>
           )}
         </div>
@@ -147,7 +149,7 @@ export function XStoreScreen() {
 
         <motion.div key={`${result.title}-${sortMode}-${result.ranked.map((s) => s.offer.id).slice(0, 6).join(',')}`} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="grid grid-cols-2 gap-3">
           {result.ranked.map((s, i) => (
-            <OfferCard key={s.offer.id} offer={s.offer} index={i} variant={s.offer.offerType === 'Dining' || s.offer.offerType === 'Travel' ? 'auto' : s.offer.offerType === 'eCoupon' ? 'ecoupon' : 'product'} reason={sortMode === 'dy' ? primaryReason(s) : undefined} className={s.offer.offerType === 'Dining' ? 'col-span-2' : undefined} />
+            <OfferCard key={s.offer.id} offer={s.offer} index={i} variant={s.offer.offerType === 'Dining' || s.offer.offerType === 'Travel' ? 'auto' : s.offer.offerType === 'eCoupon' ? 'ecoupon' : 'product'} reason={sortMode === 'dy' ? primaryReason(s) : undefined} />
           ))}
         </motion.div>
 
@@ -170,7 +172,7 @@ function summarise(excluded: ScoredOffer[]): string {
   excluded.forEach((s) => counts.set(s.excluded!, (counts.get(s.excluded!) ?? 0) + 1));
   return [...counts.entries()]
     .sort((a, b) => b[1] - a[1])
-    .slice(0, 2)
+    .slice(0, 1)
     .map(([k]) => k.toLowerCase())
     .join(', ');
 }

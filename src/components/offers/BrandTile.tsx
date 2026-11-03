@@ -45,12 +45,12 @@ export function BrandTile({ brandId, className, size = 'md', round }: BrandTileP
  * Product visual: a soft tile with the item icon in the brand colour and the
  * brand wordmark in the corner (like the "Authorised Reseller" mark).
  */
-export function ProductTile({ offer, className, iconSize = 'text-[44px]' }: { offer: { icon: string; brandId: string; brand: string }; className?: string; iconSize?: string }) {
+export function ProductTile({ offer, className, iconSize = 'text-[44px]', hideLabel }: { offer: { icon: string; brandId: string; brand: string }; className?: string; iconSize?: string; hideLabel?: boolean }) {
   const s = brandStyle(offer.brandId);
   const colour = s.bg.startsWith('linear') || s.bg === '#ffffff' || s.bg === '#f1f1f1' ? s.fg : s.bg;
   return (
     <div className={cn('relative flex items-center justify-center overflow-hidden bg-[#f7f6fb]', className)} role="img" aria-label={offer.brand}>
-      <span className="absolute right-2 top-2 max-w-[60%] truncate rounded px-1 text-[8px] font-bold uppercase tracking-wide text-on-surface-variant">{s.label}</span>
+      {!hideLabel && <span className="absolute right-2 top-2 max-w-[60%] truncate rounded px-1 text-[8px] font-bold uppercase tracking-wide text-on-surface-variant">{s.label}</span>}
       <Icon name={offer.icon} className={cn(iconSize)} style={{ color: colour === '#ffffff' ? '#3b1670' : colour }} />
     </div>
   );

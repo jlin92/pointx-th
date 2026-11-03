@@ -35,13 +35,13 @@ POINTX is a *burn-heavy* programme — everything costs points, `Point+Money` sp
 | Use case | Where to see it |
 |---|---|
 | **Balance-aware ranking (reach)** — within-your-points first, stretch items shown as Point+Money with the exact cash top-up, never hidden | *Picked for you*, X Store category pages, item detail, assistant answers |
-| **Earn ↔ burn nudging** — low balance → missions, points-back shops and partner transfers promoted; large / expiring balance → best value-per-point redemptions | Mint's home (Missions + Partner Transfer high), Korn's *Use your expiring points* shelf |
+| **Earn ↔ burn nudging** — low balance → missions, points-back shops and partner transfers promoted; large / expiring balance → best value-per-point redemptions | Mint's home (Missions + Partner Transfer high), Korn's *Use expiring points* shelf |
 | **Real-time in-session affinity** — browse X Store, open an item, and *Picked for you*, *Trending Now*, category tabs, the hero banner and the assistant re-rank before you leave | Persona 1 flow: X Store → Beauty → item → Home |
 | **Explicit feedback → DY** — POINTX's own *Like this? ✓ ✕* cards feed affinity; ✕ removes the item by rule and demotes its category | *Trending Now* |
 | **Merchandising rules** — out of stock, expired, already redeemed, already in My Coupon, already joined, ✕-rated, points-only above balance, SCB Wealth-only, cardholder-only, *bought something similar recently* (purchase cadence) | "N hidden" line on X Store / Shops; reasoning rail lists each rule and count |
 | **Segment-gated content** — *Wealth Wonders* shelf and Wealth-only items for SCB Wealth; Cashback → "Credit card not found" and card missions hidden without an SCB credit card | Korn vs Mint |
 | **Targeted (personal) items pinned on top** | *First Scan & Pay* (Mint), *Pay your SCB card bill with points* (Korn) |
-| **Expiring-points urgency** with a concrete personal use | Korn's hero banner, points line chip, *Use your expiring points*, My POINTX balance card |
+| **Expiring-points urgency** with a concrete personal use | Korn's hero banner, points line chip, *Use expiring points*, My POINTX balance card |
 | **Flash deal / low-stock urgency** | Flash Deal countdown, `Only 3 left` reasons |
 | **Generative banners** — 3 variants per persona (A/B/C) plus a live-generated variant from in-session affinity for the new member | Home hero |
 | **Partner-transfer top-ups** — linked partner balances converted into the exact POINTX received, offered when an item is out of reach | Partner Points Transfer shelf, item detail (e.g. MacBook Neo), assistant |

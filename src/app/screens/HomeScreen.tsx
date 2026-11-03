@@ -78,30 +78,27 @@ function HeroBanner() {
 
   return (
     <section>
-      <motion.div key={banner.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className={cn('relative overflow-hidden rounded-2xl p-4 shadow-card', toneClass[banner.tone])}>
-        <div className="absolute -right-8 -top-10 h-36 w-36 rounded-full bg-white/10" />
-        <div className="absolute -bottom-10 right-16 h-28 w-28 rounded-full bg-white/5" />
-        <div className="absolute right-3 top-3 z-10">
-          <WhyButton onClick={openWhy} dark />
+      <motion.div key={banner.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className={cn('relative overflow-hidden rounded-2xl px-4 py-3.5 shadow-card', toneClass[banner.tone])}>
+        <div className="absolute -right-8 -top-10 h-32 w-32 rounded-full bg-white/10" />
+        <div className="relative">
+          <p className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wide opacity-85">
+            <Icon name={banner.icon} filled className="text-[14px]" />
+            <span className="truncate">{banner.eyebrow}</span>
+          </p>
+          <h2 className="mt-1 line-clamp-2 font-heading text-[17px] font-semibold leading-tight">{banner.title}</h2>
+          <p className="mt-1 line-clamp-2 text-[12px] leading-snug opacity-90">{banner.body}</p>
         </div>
-        <div className="relative flex items-start gap-3 pr-24">
-          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/15">
-            <Icon name={banner.icon} filled className="text-[24px]" />
-          </span>
-          <div className="min-w-0">
-            <p className="truncate text-[11px] font-semibold uppercase tracking-wide opacity-85">{banner.eyebrow}</p>
-            <h2 className="mt-0.5 font-heading text-[18px] font-semibold leading-tight">{banner.title}</h2>
-            <p className="mt-1.5 text-[12px] leading-snug opacity-90">{banner.body}</p>
-          </div>
-        </div>
-        <div className="relative mt-3 flex items-center justify-between">
-          <button type="button" onClick={go} className="flex items-center gap-1 rounded-full bg-white px-3.5 py-2 text-[12px] font-semibold text-on-surface">
+        <div className="relative mt-3 flex items-center justify-between gap-2">
+          <button type="button" onClick={go} className="flex items-center gap-1 rounded-full bg-white px-3.5 py-1.5 text-[12px] font-semibold text-on-surface">
             {banner.cta}
             <Icon name="arrow_forward" className="text-[15px]" />
           </button>
-          <span className="flex items-center gap-1 text-[10px] font-medium opacity-80">
-            <Icon name="auto_awesome" className="text-[12px]" />
-            {live ? 'Generated live' : 'Personalised'}
+          <span className="flex items-center gap-1.5">
+            <span className="flex items-center gap-1 text-[10px] font-medium opacity-80">
+              <Icon name="auto_awesome" className="text-[12px]" />
+              {live ? 'Generated live' : 'Personalised'}
+            </span>
+            <WhyButton onClick={openWhy} dark />
           </span>
         </div>
       </motion.div>
@@ -238,7 +235,7 @@ function Shelf({ def }: { def: HomeSectionDef }) {
         Updated just now from what you tapped
       </span>
     ) : def.id === 'bestvalue' && appUserProfile.expiringPoints ? (
-      `${formatPoints(appUserProfile.expiringPoints.amount)} points expire ${appUserProfile.expiringPoints.when} · best value per point within your ${formatPoints(points)} balance`
+      `${formatPoints(appUserProfile.expiringPoints.amount)} expire ${appUserProfile.expiringPoints.when} · best value within your ${formatPoints(points)} balance`
     ) : def.id === 'wealth' ? (
       'มีสิทธิ์รับคะแนนคืนรวมสูงสุด 1,000,000 POINTX ทุกเดือน · SCB Wealth only'
     ) : undefined;

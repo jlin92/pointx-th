@@ -93,13 +93,13 @@ function DetailBody({ o }: { o: Offer }) {
       <div className="relative">
         {isShop || isTransfer || isMission ? (
           <div className="relative">
-            <ProductTile offer={o} className="h-52 w-full" iconSize="text-[72px]" />
+            <ProductTile offer={o} className="h-52 w-full" iconSize="text-[72px]" hideLabel />
             <BrandTile brandId={o.brandId} size="md" className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-2xl ring-4 ring-white shadow-card" />
           </div>
         ) : o.offerType === 'eCoupon' ? (
           <BrandTile brandId={o.brandId} className="h-52 w-full" size="lg" />
         ) : (
-          <ProductTile offer={o} className="h-56 w-full" iconSize="text-[96px]" />
+          <ProductTile offer={o} className="h-56 w-full" iconSize="text-[96px]" hideLabel />
         )}
         <DiscountBadge pct={o.discountPct} className="left-3 top-3 rounded-xl text-[14px]" />
         <div className="absolute right-3 top-3">
