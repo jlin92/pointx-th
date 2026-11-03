@@ -4,7 +4,7 @@
 
 **Controls:** `P` presenter panel · `T` flip "POINTX today" vs DY · banner variant **A/B/C** · **Why this?** / **Why this order?** opens the reasoning rail with the sorting-optimiser board · **SCB button** opens scan & pay.
 
-**Run order:** Mint first (cold start → real-time → first earn), then Korn (expiry, suppression, Wealth, big-ticket top-up), then the **live persona switch** and the **`T` comparison** for the close.
+**Run order:** Mint first (cold start → real-time → first earn), then Korn (expiry, dining-first, suppression, Wealth), then the **live persona switch** and the **`T` comparison** for the close.
 
 ---
 
@@ -29,23 +29,24 @@
 
 ---
 
-## PERSONA 2 — Korn · Returning SCB Wealth cardholder *(expiry + suppression + segment + big-ticket)*
-*186,420 pts, 24,000 expiring 31 Dec · Eat Around regular (Copper ×2, mission 2/3) · Tokyo via XTravel · AirPods 5 redeemed 6 weeks ago · Café Amazon most mornings · Starbucks THB 100 redeemed last week · M Card 4,400 + ROP 18,000 linked.*
+## PERSONA 2 — Korn · Returning SCB Wealth cardholder, loves eating out *(expiry + dining-first + suppression + segment)*
+*186,420 pts, 24,000 expiring 31 Dec · Eat Around regular (Copper ×2, mission 2/3) · Café Amazon most mornings · Starbucks THB 100 redeemed last week · AirPods 5 redeemed 6 weeks ago · M Card 4,400 linked.*
 
 | # | Do this | Say this / DY capability |
 |---|---------|--------------------------|
-| 1 | `P` → **Korn**. **Home**: `⊗ 186,420 · 24,000 expire 31 Dec`, banner *"That's a Copper dinner for two — on us"*. **Use your expiring points** = Copper Dinner, NAMA, Baan Ying… (sized to the expiring amount, her dining affinity first). **Wealth Wonders** shelf appears. **Eat Around** = Copper, Yamazato, NAMA, Sorn | "Same screen, different member. Expiry urgency with a *personal* use for the points. A Wealth-only shelf Mint never sees. And look at what is **not** here: AirPods (bought 6 weeks ago), the Starbucks coupon she redeemed, the Café Amazon coupon already in My Coupon." → *expiry trigger, custom best-value algorithm, segment-gated content, suppression + cadence rules* |
+| 1 | `P` → **Korn**. **Home**: `⊗ 186,420 · 24,000 expire 31 Dec`, banner *"That's a Copper dinner for two — on us"*. **Use your expiring points** = Copper Dinner, NAMA, Baan Ying… (sized to the expiring amount, dining first). **Eat Around** = Copper, Yamazato, NAMA, Sorn. **Wealth Wonders** shelf appears | "Same screen, different member. One clear passion — eating out — so every shelf leads with restaurants, and the expiring points get a *personal* use. A Wealth-only shelf Mint never sees. And look at what is **not** here: the Starbucks coupon she redeemed, the Café Amazon coupon already in My Coupon, the AirPods she bought." → *expiry trigger, affinity-first custom algorithm, segment-gated content, suppression + cadence rules* |
 | 2 | Tap **Why this?** → scroll the **Sorting optimiser** board | "Every position is explainable: affinity, user margin (value per point vs 12.5), reach, popularity, urgency — and the list of what the rules filtered out, including *Bought AirPods recently*." → *Algorithm Studio-style weighted sort, merchandising rules* |
-| 3 | Scroll to **Flash Deal** and **Apple Top Picks** | "Flash Deal leads with Let's Relax and the MacBook — the AirPods flash items are gone. Apple Top Picks shows Apple Watch and iPad as complements, not another pair of earbuds." Press **`T`** → *POINTX today*: newest first, AirPods back. Press **`T`** again. → *purchase-cadence suppression, compare* |
-| 4 | Scroll to **My Missions** | "Her targeted *Pay your SCB card bill with points* mission is pinned (cardholder only); *Eat Around explorer* shows 2 of 3 — one more booking finishes it." → *personal items on top, progress personalisation* |
-| 5 | **X Store** → open **MacBook Neo** | "306,900 points, 2 left. She has 186,420 — the detail shows *Point+Money: all her points + ฿9,639*, and the **Close the gap** block offers her 4,400 M Card → +4,000 POINTX." → *Point+Money math, partner top-up next-best action* |
-| 6 | **Assistant** → proactive nudge → **Use my expiring points** | "Muse opens with the business problem and answers with value-ranked items within her balance, tilted to dining, coffee and Apple." Then **Book dinner this weekend** → "It knows one more booking finishes her mission, puts Copper first, then Red Table Award places she hasn't tried." → *proactive engagement, mission-aware answers* |
-| 7 | Tap **Plan a Japan trip with points** | "Tokyo 4 nights — the Point+Money split against her balance, up to 30,000 POINTX back, and her linked Royal Orchid Plus for the flight." → *travel affinity, Point+Money, linked partner* |
-| 8 | Tap **Points or money at Café Amazon?** then **I want the MacBook Neo** | "Pay with POINTX: 30% comes back, and she has 24,000 expiring. For the MacBook: flash deal, 2 left, Point+Money or M Card top-up, plus the 2,000-point card-bill mission." → *scan & pay guidance, big-ticket planning* |
-| 9 | **My POINTX** → **All partners** (M Card first with *4,400 linked → 4,000 POINTX*) → **History** → **Benefits** | "Linked partners first with the exact conversion; the history that feeds her affinity (Café Amazon, Copper, AirPods, Tokyo); Wealth benefits." → *linked-partner signal, offline/transaction data, segment benefits* |
-| 10 | **SCB scan** → **Café Amazon** → **Pay with POINTX** | "Her shops first in the scan sheet. The nudge says: use expiring points here — 30% comes back anyway." → *scan & pay guidance with expiry* |
+| 3 | Presenter → banner **B** (*Book one more restaurant and earn 1,000*) then **C** (*Wealth Wonders*) | "Three creatives for the same member: expiry-led, mission-progress-led, segment-led. DY tests them and allocates traffic." → *generative experiences, A/B/n* |
+| 4 | Scroll to **Flash Deal** → press **`T`** → *POINTX today*: newest first, AirPods back → press **`T`** again | "Today's app shows her earbuds she bought six weeks ago. DY's cadence rule removes them and the list is dining- and value-led instead." → *purchase-cadence suppression, compare* |
+| 5 | **Shops** → tap **Food & Beverage** → **X Store** | "Her tap is a live signal. X Store now says *Food & Beverage first* — food e-Coupons and restaurants lead, the *Dining Vouchers* tab moved forward, and the reasons on the cards say why." → *in-session affinity, live re-ranking, tab reorder* |
+| 6 | Open **Copper Beyond Buffet – Dinner** | "32,488 points, within her balance — *153,932 left after*. Related restaurants below are Red Table Award places she hasn't tried." → *reach, related items* |
+| 7 | **Home** → **My Missions** | "Her targeted *Pay your SCB card bill with points* mission is pinned (cardholder only); *Eat Around explorer* shows 2 of 3 — one more booking finishes it." → *personal items on top, progress personalisation* |
+| 8 | **Assistant** → proactive nudge → **Use my expiring points** → **Book dinner this weekend** | "Muse opens with the business problem and answers with value-ranked dinners within her balance. It knows one more booking finishes her mission, puts Copper first, then Red Table Award places she hasn't tried." → *proactive engagement, mission-aware answers* |
+| 9 | Tap **Points or money at Café Amazon?** → **Which shops give points back?** | "Pay with POINTX: 30% comes back, and she has 24,000 expiring. Points-back shops ranked with her places first." → *scan & pay guidance, affinity-ranked shops* |
+| 10 | **SCB scan** → **Café Amazon** → **Pay with POINTX** → **Confirm** | "Her shops first in the scan sheet. The nudge says: use expiring points here — 30% comes back anyway. Balance moves, history updates." → *scan & pay with expiry, closed loop* |
+| 11 | **My POINTX** → **All partners** (M Card first with *4,400 linked → 4,000 POINTX*) → **Benefits** | "Linked partners first with the exact conversion; Wealth and cardholder benefits." → *linked-partner signal, segment benefits* |
 
-**Close:** *"A points-rich member with 24,000 about to expire: DY gave her a reason and a route — dinner tonight, a trip, or a MacBook with a partner top-up — and never showed her what she'd already bought."*
+**Close:** *"A points-rich member with 24,000 about to expire and one obvious love: DY gave her a reason and a route — dinner — and never showed her what she'd already bought."*
 
 ---
 

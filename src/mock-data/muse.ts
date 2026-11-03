@@ -96,7 +96,7 @@ const kornScripts: Record<string, MuseReply> = {
     chips: ['Flash deal · 2 left', 'Point+Money', 'Partner top-up'],
     results: [ID.MACBOOK_NEO, ID.T_MCARD, ID.M_CARD_BILL],
     reasons: ['Point+Money · 186,420 pts + ฿9,639', 'Transfer 4,400 M Card → +4,000 POINTX', '+2,000 bonus when you pay your card bill with points'],
-    followups: ['Use my expiring points', 'Plan a Japan trip with points', 'Any other Apple deals?'],
+    followups: ['Use my expiring points', 'Book dinner this weekend'],
   },
   wealth: {
     kind: 'support',
@@ -220,11 +220,11 @@ function resolveDynamic(userId: AppUserId, text: string, ctx: MuseContext): { re
       intent: 'expiring',
       reply: {
         kind: 'commerce',
-        text: `You have ${formatPoints(ctx.expiringPoints.amount)} points expiring ${ctx.expiringPoints.when} (≈${formatThb(ctx.expiringPoints.amount / RATE)}). Highest value per point for the things you actually do — dining, coffee, Apple — all within your balance:`,
+        text: `You have ${formatPoints(ctx.expiringPoints.amount)} points expiring ${ctx.expiringPoints.when} (≈${formatThb(ctx.expiringPoints.amount / RATE)}). Highest value per point for the things you actually do — dinners out and coffee — all within your balance:`,
         chips: [`${formatPoints(ctx.expiringPoints.amount)} expiring`, 'User margin', 'Your affinities'],
         results: ids(list),
         reasons: list.map((o) => `${valueNote(o)} · ${split(o, ctx).split(' · ')[0]}`),
-        followups: ['Book dinner this weekend', 'Plan a Japan trip with points', 'Which shops give points back?'],
+        followups: ['Book dinner this weekend', 'Points or money at Café Amazon?', 'Which shops give points back?'],
       },
     };
   }
@@ -321,7 +321,7 @@ function resolveDynamic(userId: AppUserId, text: string, ctx: MuseContext): { re
         results: ids(list),
         reasons: list.map((d) => `${d.rating} ★ · ${split(d, ctx)}`),
         action: { label: 'Open Eat Around', chapter: 3, chip: 'x-dining' },
-        followups: ['Use my expiring points', 'Plan a Japan trip with points', 'Help me find a gift'],
+        followups: ['Use my expiring points', 'Which shops give points back?', 'Help me find a gift'],
       },
     };
   }
@@ -497,10 +497,10 @@ export const musePromptsByUser: Record<AppUserId, MusePrompt[]> = {
   2: [
     { id: 'k1', label: 'Use my expiring points', icon: 'hourglass_top', intent: 'expiring' },
     { id: 'k2', label: 'Book dinner this weekend', icon: 'restaurant', intent: 'dinner' },
-    { id: 'k3', label: 'Plan a Japan trip with points', icon: 'flight_takeoff', intent: 'travel' },
-    { id: 'k4', label: 'I want the MacBook Neo', icon: 'laptop_mac', intent: 'macbook' },
-    { id: 'k5', label: 'Points or money at Café Amazon?', icon: 'coffee', intent: 'pay-amazon' },
-    { id: 'k6', label: 'What are my Wealth benefits?', icon: 'workspace_premium', intent: 'wealth' },
+    { id: 'k3', label: 'Points or money at Café Amazon?', icon: 'coffee', intent: 'pay-amazon' },
+    { id: 'k4', label: 'Which shops give points back?', icon: 'redeem', intent: 'shops-back' },
+    { id: 'k5', label: 'What are my Wealth benefits?', icon: 'workspace_premium', intent: 'wealth' },
+    { id: 'k6', label: 'Help me find a gift', icon: 'redeem', intent: 'gift' },
   ],
 };
 
@@ -527,7 +527,7 @@ export const proactiveNudgeByUser: Record<AppUserId, ProactiveNudge> = {
     intent: 'how-it-works',
   },
   2: {
-    text: 'Hi Korn — 24,000 of your points expire on 31 Dec. Want the best-value ways to use them, starting with dinner?',
+    text: 'Hi Korn — 24,000 of your points expire on 31 Dec. One more Eat Around booking also finishes your mission. Want the best-value ways to use them, starting with dinner?',
     cta: 'Use my expiring points',
     intent: 'expiring',
   },
@@ -541,8 +541,8 @@ const fallbackByUser: Record<AppUserId, MuseReply> = {
   },
   2: {
     kind: 'support',
-    text: 'I can find the best value for your expiring points, book dinner, plan a trip or work out a Point+Money split. Try one of these:',
-    followups: ['Use my expiring points', 'Book dinner this weekend', 'Plan a Japan trip with points'],
+    text: 'I can find the best value for your expiring points, book dinner, or tell you where points go furthest. Try one of these:',
+    followups: ['Use my expiring points', 'Book dinner this weekend', 'Which shops give points back?'],
   },
 };
 

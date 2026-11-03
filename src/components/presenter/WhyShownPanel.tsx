@@ -29,23 +29,23 @@ export function WhyShownPanel({ onClose }: { onClose?: () => void }) {
       case 'shops':
         return isNew
           ? 'Shops ranked by value per point (points-back deals first) and live affinity; category tabs reorder to the live top affinity. Smart search understands “coffee” / “กาแฟ” and hands off to Shopping Muse.'
-          : 'Shops ranked by her scan & pay habits (Café Amazon, lounges) and points-back value; tabs ordered by her categories. Smart search hands off to Shopping Muse.';
+          : 'Shops ranked by her scan & pay habits (Café Amazon, restaurants) and points-back value; Food & Beverage tab first. Smart search hands off to Shopping Muse.';
       case 'xstore':
         return isNew
           ? 'X Store ranked by reach (within 1,250 points first, Point+Money stretch next), value per point and live affinity. Rules hide out-of-stock, Wealth-only and ✕-rated items. Smart search expands intent words; a hand-off card routes the query to Shopping Muse.'
-          : 'X Store ranked by affinity (Apple, dining, travel) + value per point. Rules hide AirPods-like items (bought 6 weeks ago), redeemed and wallet items; the Wealth shelf is unlocked. Smart search hands off to Shopping Muse.';
+          : 'X Store ranked by her dining affinity + value per point, Dining Vouchers tab first. Rules hide AirPods-like items (bought 6 weeks ago), redeemed and wallet items; Wealth-only items are unlocked. Smart search hands off to Shopping Muse.';
       case 'detail':
-        return isNew ? 'Point+Money split against her 1,250 balance; if points-only and short, the mission and partner transfer that close the gap are recommended (earn next-best action).' : 'Value panel shows points per ฿1 vs the 12.5 scan rate and the Point+Money split; M Card transfer offered as a top-up; related items from the same brand / tags.';
+        return isNew ? 'Point+Money split against her 1,250 balance; if points-only and short, the mission and partner transfer that close the gap are recommended (earn next-best action).' : 'Value panel shows points per ฿1 vs the 12.5 scan rate and the Point+Money split; M Card transfer offered as a top-up when short; related restaurants / items from the same brand or tags.';
       case 'coupons':
         return 'Suggestions below the wallet are e-Coupons within balance, ranked by value per point; redeemed and wallet items excluded.';
       case 'missions':
         return isNew ? 'Earn boost: low balance, so missions are promoted and sorted easiest-to-earn first; card missions hidden (no SCB credit card); First Scan & Pay pinned as a targeted mission.' : 'Targeted card-bill mission pinned (cardholder); joined Eat Around mission shows live progress 2/3; others ranked by her habits (dining, coffee).';
       case 'mypointx':
-        return isNew ? 'Linked partners (AIS, The 1) pulled to the top with the exact POINTX she would receive; Cashback shows “Credit card not found” with a card-link nudge.' : 'M Card (4,400 linked) first — the top-up that makes a MacBook reachable; expiring-points banner on the balance card; cardholder bill payment surfaced.';
+        return isNew ? 'Linked partners (AIS, The 1) pulled to the top with the exact POINTX she would receive; Cashback shows “Credit card not found” with a card-link nudge.' : 'M Card (4,400 linked) first with the exact POINTX received; expiring-points banner on the balance card; cardholder bill payment surfaced.';
       case 'travel':
-        return isNew ? 'Popular stays with the Point+Money split; airline miles listed with minimums.' : 'Japan first from last November’s XTravel booking; Royal Orchid Plus flagged as linked; Point+Money split against her balance.';
+        return isNew ? 'Popular stays with the Point+Money split; airline miles listed with minimums.' : 'Popular stays with the Point+Money split against her balance; airline miles listed with minimums.';
       default:
-        return isNew ? 'Proactive education nudge · prompts built for a small balance (“What can I get with 1,250 points?”) · each intent updates affinity in real time.' : 'Proactive expiry nudge · value-ranked results within balance · redeemed-, wallet- and mission-aware answers · Point+Money math and partner top-ups.';
+        return isNew ? 'Proactive education nudge · prompts built for a small balance (“What can I get with 1,250 points?”) · each intent updates affinity in real time.' : 'Proactive expiry nudge · dining-first, value-ranked results within balance · redeemed-, wallet- and mission-aware answers · points-vs-money guidance.';
     }
   })();
 

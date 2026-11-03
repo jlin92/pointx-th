@@ -44,16 +44,16 @@ POINTX is a *burn-heavy* programme — everything costs points, `Point+Money` sp
 | **Expiring-points urgency** with a concrete personal use | Korn's hero banner, points line chip, *Use your expiring points*, My POINTX balance card |
 | **Flash deal / low-stock urgency** | Flash Deal countdown, `Only 3 left` reasons |
 | **Generative banners** — 3 variants per persona (A/B/C) plus a live-generated variant from in-session affinity for the new member | Home hero |
-| **Partner-transfer top-ups** — linked partner balances converted into the exact POINTX received, offered when an item is just out of reach | Partner Points Transfer shelf, item detail, assistant |
+| **Partner-transfer top-ups** — linked partner balances converted into the exact POINTX received, offered when an item is out of reach | Partner Points Transfer shelf, item detail (e.g. MacBook Neo), assistant |
 | **Scan & pay guidance** — which way to pay (points vs SCB EASY) given points-back and expiring points | Scan sheet nudge, assistant "Points or money at Café Amazon?" |
 | **Smart search → Shopping Muse** | Type "earbuds", "กาแฟ", "massage", "japan" in X Store or Shops; hand-off card routes the query to the assistant |
-| **Shopping Muse: support + commerce** | Education ("How does POINTX work?"), "What can I get with my points?", "How do I earn points fast?", "I want AirPods" (Point+Money + transfer + mission), "Use my expiring points", "Book dinner this weekend", "Plan a Japan trip", "I want the MacBook Neo", gifting, points-back shops, flash deals, casual phrasing ("anything good?", "โปร") — all computed live from the feed and the member's balance, wallet, missions, linked partners and ✓/✕ |
+| **Shopping Muse: support + commerce** | Education ("How does POINTX work?"), "What can I get with my points?", "How do I earn points fast?", "I want AirPods" (Point+Money + transfer + mission), "Use my expiring points", "Book dinner this weekend", "Points or money at Café Amazon?", gifting, points-back shops, flash deals, casual phrasing ("anything good?", "โปร") — all computed live from the feed and the member's balance, wallet, missions, linked partners and ✓/✕ |
 | **Compare with today** | `T` flips every list to newest-first/no-filter so the contrast is visible |
 
 ## Personas
 
 - **Pimchanok "Mint" Srisuk — new member, first open.** 1,250 welcome points, no SCB credit card, no history, 3,200 AIS Points + 850 The 1 points linked but unused. Cold start on popularity + reach; earn paths promoted; the app re-ranks within the session as she browses and rates; the live banner is generated from her first signals.
-- **Kornkanok "Korn" Wattanasin — returning SCB Wealth cardholder.** 186,420 pts (24,000 expiring 31 Dec), Eat Around regular (Copper ×2, mission 2/3), Tokyo via XTravel, Apple fan (AirPods 5 redeemed 6 weeks ago), Café Amazon scan & pay most mornings, Starbucks e-Coupon redeemed last week, 4,400 M Card + 18,000 ROP miles linked. Expiry urgency, affinity + value sorting, Wealth shelf, suppression of what she already has, partner top-up for a MacBook.
+- **Kornkanok "Korn" Wattanasin — returning SCB Wealth cardholder, loves eating out.** 186,420 pts (24,000 expiring 31 Dec), Eat Around regular (Copper ×2, mission 2/3), Café Amazon scan & pay most mornings, Starbucks e-Coupon redeemed last week, AirPods 5 redeemed 6 weeks ago, 4,400 M Card linked. One clear affinity — dining — so the story is easy to see: expiry urgency with a dinner, dining first on every shelf, Wealth shelf, suppression of what she already has.
 
 ## Data
 

@@ -32,7 +32,7 @@ function TabButton({ tab, active, onClick }: { tab: Tab; active: boolean; onClic
       ) : (
         <Icon name={tab.icon} filled={active} className="text-[26px]" />
       )}
-      <span className={cn('text-[11px]', active ? 'font-semibold' : 'font-normal')}>{tab.label}</span>
+      <span className={cn('whitespace-nowrap text-[11px]', active ? 'font-semibold' : 'font-normal')}>{tab.label}</span>
     </button>
   );
 }
@@ -43,15 +43,15 @@ export function BottomNav() {
   const key = chapterById(chapter).key;
 
   return (
-    <nav aria-label="Primary" className="relative z-30 border-t border-surface-container-high bg-white px-1 pb-5">
+    <nav aria-label="Primary" className="relative z-30 border-t border-surface-container-high bg-white px-1 pb-4">
       <ul className="flex items-end justify-between">
         {left.map((tab) => (
-          <li key={tab.label} className="flex-1">
+          <li key={tab.label} className="min-w-0 flex-1 basis-0">
             <TabButton tab={tab} active={tab.keys.includes(key)} onClick={() => goToChapter(tab.chapter)} />
           </li>
         ))}
-        <li className="relative flex w-20 shrink-0 justify-center">
-          <button type="button" onClick={() => openScan()} aria-label="Scan to pay with POINTX" className="absolute -top-9 flex h-16 w-16 items-center justify-center rounded-full bg-white p-1 shadow-float">
+        <li className="relative h-[60px] w-20 shrink-0">
+          <button type="button" onClick={() => openScan()} aria-label="Scan to pay with POINTX" className="absolute left-1/2 top-[-22px] flex h-16 w-16 -translate-x-1/2 items-center justify-center rounded-full bg-white p-1 shadow-float">
             <span className="flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-[#3b1670] to-[#6a1b7a]">
               <span className="flex flex-col items-center">
                 <span className="flex h-7 w-7 items-center justify-center rounded-md border border-white/70">
@@ -63,7 +63,7 @@ export function BottomNav() {
           </button>
         </li>
         {right.map((tab) => (
-          <li key={tab.label} className="flex-1">
+          <li key={tab.label} className="min-w-0 flex-1 basis-0">
             <TabButton tab={tab} active={tab.keys.includes(key)} onClick={() => goToChapter(tab.chapter)} />
           </li>
         ))}

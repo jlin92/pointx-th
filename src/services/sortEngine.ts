@@ -61,8 +61,8 @@ export function affinityFor(o: Offer, ctx: RankContext): { value: number; note?:
     }
     if (l < negative) negative = l;
   }
-  // Live signals count 1 per interaction; three interactions saturate. A ✕ pulls the whole category down.
-  const value = clamp(seedScore * 0.7 + clamp(liveScore / 3) * 0.9 + negative * 0.25);
+  // Live signals count 1 per interaction; two interactions saturate and outrank any seed. A ✕ pulls the whole category down.
+  const value = clamp(seedScore * 0.6 + clamp(liveScore / 2) * 1.0 + negative * 0.25);
   const label = hit?.startsWith('brand:') ? o.brand : hit?.replace(/^tag:/, '');
   if (negative < 0 && value < 0.2) return { value, note: 'You passed on something similar' };
   if (value > 0.2 && label && fromLive && liveScore >= 1) return { value, note: `Because you browsed ${label}` };
@@ -256,4 +256,39 @@ export function topSessionAffinity(session: Record<string, number>): string | nu
   if (!entries.length) return null;
   entries.sort((a, b) => b[1] - a[1]);
   return entries[0][0].replace(/^brand:/, '');
+}
+
+/** Does an item belong to the live top-affinity label (category, brand or tag)? */
+export function matchesAffinity(o: Offer, label: string): boolean {
+  const l = label.toLowerCase();
+  if (o.category.toLowerCase() === l || o.brandId === l || o.brand.toLowerCase() === l) return true;
+  if (o.tags.some((t) => t === l)) return true;
+  // Dining and Food & Beverage are one intent for members ("food first").
+  if ((l === 'dining' || l === 'food & beverage') && (o.offerType === 'Dining' || o.category === 'Food & Beverage' || o.category === 'Dining')) return true;
+  return false;
+}
+
+/**
+ * Make a list honour its own headline: when the member has a live top
+ * affinity, items that match it lead; for a small balance with no live
+ * signal, items within reach lead and Point+Money stretch items follow.
+ * Pinned items and "today" mode are left untouched.
+ */
+export function headlineOrder(ranked: ScoredOffer[], ctx: RankContext): ScoredOffer[] {
+  if (ctx.mode === 'today') return ranked;
+  const pinned = new Set(ctx.profile.pinned);
+  const head = ranked.filter((s) => pinned.has(s.offer.id));
+  const rest = ranked.filter((s) => !pinned.has(s.offer.id));
+  const live = topSessionAffinity(ctx.sessionAffinity);
+  if (live) {
+    const hit = rest.filter((s) => matchesAffinity(s.offer, live));
+    const miss = rest.filter((s) => !matchesAffinity(s.offer, live));
+    return [...head, ...hit, ...miss];
+  }
+  if (ctx.points < 20000) {
+    const within = rest.filter((s) => s.offer.pointsCost > 0 && s.offer.pointsCost <= ctx.points);
+    const stretch = rest.filter((s) => !(s.offer.pointsCost > 0 && s.offer.pointsCost <= ctx.points));
+    return [...head, ...within, ...stretch];
+  }
+  return ranked;
 }

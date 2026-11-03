@@ -36,7 +36,7 @@ function QuickActions() {
   const { appUserProfile, goToChapter, showToast } = useDemo();
   const linked = Object.keys(appUserProfile.linkedPartners).length;
   return (
-    <section className="no-scrollbar -mx-3 flex gap-2 overflow-x-auto px-3 pt-1">
+    <section className="grid grid-cols-5 gap-1 pt-2">
       {appUserProfile.quickActions.map((id) => {
         const q = quickActionMeta[id];
         const onClick = () => {
@@ -44,13 +44,13 @@ function QuickActions() {
           goToChapter(q.chapter);
         };
         return (
-          <button key={id} type="button" onClick={onClick} className="flex w-[72px] shrink-0 flex-col items-center gap-1.5">
-            <span className={cn('relative flex h-14 w-14 items-center justify-center rounded-2xl shadow-card', id === 'xtravel' ? 'bg-gradient-to-br from-[#5a3bd6] to-[#8c6cf0]' : 'bg-white')}>
-              <Icon name={q.icon} className={cn('text-[28px]', q.colour)} />
-              {q.hot && <span className="absolute -right-2 -top-1.5 rounded-full bg-accent px-1.5 py-0.5 text-[9px] font-bold text-white">HOT</span>}
+          <button key={id} type="button" onClick={onClick} className="flex min-w-0 flex-col items-center gap-1.5">
+            <span className={cn('relative flex h-[52px] w-[52px] items-center justify-center rounded-2xl shadow-card', id === 'xtravel' ? 'bg-gradient-to-br from-[#5a3bd6] to-[#8c6cf0]' : 'bg-white')}>
+              <Icon name={q.icon} className={cn('text-[26px]', q.colour)} />
+              {q.hot && <span className="absolute -right-1 -top-2 rounded-full bg-accent px-1.5 py-0.5 text-[9px] font-bold text-white">HOT</span>}
               {id === 'transfer' && linked > 0 && <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-success text-[10px] font-bold text-white">{linked}</span>}
             </span>
-            <span className="w-full truncate text-center text-[12px] text-on-surface">{q.label}</span>
+            <span className="w-full truncate text-center text-[11px] text-on-surface">{q.label}</span>
           </button>
         );
       })}

@@ -2,7 +2,7 @@ import type { Banner, Offer, ScoredOffer, ShelfSource } from '@/types';
 import { byType, catalogue, offer } from '@/mock-data/offers';
 import { settings } from '@/mock-data/settings';
 import { chapterIdByKey } from '@/app/chapters';
-import { rankOffers, scoreOffer, type RankContext } from './sortEngine';
+import { headlineOrder, rankOffers, scoreOffer, type RankContext } from './sortEngine';
 
 const top = (list: Offer[], ctx: RankContext, n: number): ScoredOffer[] => rankOffers(list, ctx).ranked.slice(0, n);
 
@@ -16,12 +16,7 @@ const redeemable = (): Offer[] => byType('Product', 'eCoupon', 'Dining', 'Donati
  */
 export function forYouFull(ctx: RankContext): { ranked: ScoredOffer[]; excluded: ScoredOffer[] } {
   const r = rankOffers(byType('Product', 'eCoupon', 'Dining'), ctx);
-  // Once the member has shown intent this session, affinity leads and reach is just a factor.
-  const hasLiveSignal = Object.values(ctx.sessionAffinity).some((v) => v > 0);
-  if (ctx.mode === 'today' || ctx.points >= 20000 || hasLiveSignal) return r;
-  const within = r.ranked.filter((s) => s.offer.pointsCost <= ctx.points);
-  const stretch = r.ranked.filter((s) => s.offer.pointsCost > ctx.points);
-  return { ranked: [...within, ...stretch], excluded: r.excluded };
+  return { ranked: headlineOrder(r.ranked, ctx), excluded: r.excluded };
 }
 export const forYou = (ctx: RankContext, n = 10): ScoredOffer[] => forYouFull(ctx).ranked.slice(0, n);
 
@@ -38,7 +33,7 @@ export const donations = (ctx: RankContext): ScoredOffer[] => top(byType('Donati
 /** Trending Now — popularity-led, affinity-tilted, with ✕ items removed by rule. */
 export function trending(ctx: RankContext, n = 8): ScoredOffer[] {
   const pool = byType('Product', 'eCoupon').filter((o) => o.redemptions >= 600);
-  return top(pool, ctx, n);
+  return headlineOrder(rankOffers(pool, ctx).ranked, ctx).slice(0, n);
 }
 
 /** Missions to promote (unjoined); pinned targeted mission first. */

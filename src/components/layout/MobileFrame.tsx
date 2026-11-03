@@ -32,7 +32,7 @@ function StatusBar({ dark }: { dark?: boolean }) {
  */
 export function MobileFrame({ children, className, dark, barClass }: MobileFrameProps) {
   return (
-    <div className={cn('relative mx-auto w-full max-w-[420px] select-none', className)}>
+    <div className={cn('relative mx-auto w-full select-none', className)} style={{ maxWidth: 'min(420px, calc((100vh - 7.5rem) * 9 / 19.5))' }}>
       <div className="relative rounded-[52px] bg-[#1c1c22] p-[10px] shadow-frame">
         <div className="relative aspect-[9/19.5] overflow-hidden rounded-[44px] bg-surface">
           <div className="pointer-events-none absolute left-1/2 top-2.5 z-50 h-7 w-28 -translate-x-1/2 rounded-full bg-black" />

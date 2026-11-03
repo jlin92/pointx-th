@@ -8,7 +8,7 @@ import { Icon } from '@/components/ui/Icon';
 import { Disclaimer } from '@/components/ui/Card';
 import { settings } from '@/mock-data/settings';
 import { byType, chipById, expandQuery, isGiftQuery, popularItems, searchOffers, storeChips } from '@/mock-data/offers';
-import { primaryReason, rankOffers, topSessionAffinity } from '@/services/sortEngine';
+import { headlineOrder, primaryReason, rankOffers, topSessionAffinity } from '@/services/sortEngine';
 import { flashDeals } from '@/services/selectors';
 import type { Offer, ScoredOffer } from '@/types';
 import { cn } from '@/hooks/utils';
@@ -22,10 +22,10 @@ export function XStoreScreen() {
   const p = appUserProfile;
   const live = topSessionAffinity(sessionAffinity);
 
-  // Tab order: persona default, with the live top affinity pulled forward for new members.
+  // Tab order: persona default, with the live top affinity pulled forward (after All / Deal).
   const chips = useMemo(() => {
     const base = p.storeChips.map((id) => chipById(id)!).filter(Boolean);
-    if (p.homeVariant !== 'newMember' || !live) return base;
+    if (!live) return base;
     const hot = storeChips.find((c) => c.affinity === live);
     if (!hot || !base.includes(hot)) return base;
     const [deal, all] = base;
@@ -40,7 +40,7 @@ export function XStoreScreen() {
       const { exact, semantic } = searchOffers(q, pool);
       const a = rankOffers(exact, rankContext);
       // Gift queries are intentionally broad: keep popularity order and let the assistant narrow it down.
-      const b = gift ? { ranked: rankOffers(semantic, { ...rankContext, mode: 'today' }).ranked.sort((x, y) => y.offer.redemptions - x.offer.redemptions), excluded: [] as ScoredOffer[] } : rankOffers(semantic, rankContext);
+      const b = gift ? { ranked: rankOffers(semantic, { ...rankContext, mode: 'today' }).ranked.sort((x, y) => y.offer.redemptions - x.offer.redemptions), excluded: [] as ScoredOffer[] } : { ranked: headlineOrder(rankOffers(semantic, rankContext).ranked, rankContext), excluded: rankOffers(semantic, rankContext).excluded };
       if (!a.ranked.length && !b.ranked.length) {
         const fallback = rankOffers(popularItems(8), { ...rankContext, mode: 'today' });
         return { title: `No exact match for “${q}” · popular right now`, ranked: fallback.ranked, excluded: [] as ScoredOffer[], semanticCount: 0, fallback: true };
@@ -49,7 +49,7 @@ export function XStoreScreen() {
     }
     const chip = chipById(activeStoreChip) ?? storeChips[1];
     const r = rankOffers(pool.filter(chip.match), rankContext);
-    return { title: chip.label === 'All' ? 'All items' : chip.label, ...r, semanticCount: 0, fallback: false };
+    return { title: chip.label === 'All' ? 'All items' : chip.label, ranked: headlineOrder(r.ranked, rankContext), excluded: r.excluded, semanticCount: 0, fallback: false };
   }, [q, gift, activeStoreChip, rankContext]);
 
   useEffect(() => {
@@ -67,7 +67,7 @@ export function XStoreScreen() {
   const within = result.ranked.filter((s) => s.offer.pointsCost > 0 && s.offer.pointsCost <= points).length;
   const hiddenSummary = summarise(result.excluded);
   const flash = useMemo(() => flashDeals(rankContext, 6), [rankContext]);
-  const showFlash = !q && activeStoreChip === 'x-deal' && flash.length > 0;
+  const showFlash = !q && (activeStoreChip === 'x-all' || activeStoreChip === 'x-deal') && flash.length > 0;
 
   return (
     <Screen>
@@ -122,7 +122,7 @@ export function XStoreScreen() {
 
         <SortIndicator
           live={sortMode === 'dy' && !!live && !gift && !result.fallback}
-          label={result.fallback || gift ? 'Default order · most redeemed first' : sortMode === 'dy' ? (live ? `Sorted for you · ${live.replace(/^brand:/, '')} first` : p.homeVariant === 'newMember' ? 'Sorted for you · within your points first' : 'Sorted for you · your taste + best value per point') : 'POINTX today · newest first, no filtering'}
+          label={result.fallback || gift ? 'Default order · most redeemed first' : sortMode === 'dy' ? (live ? `Sorted for you · ${live.replace(/^brand:/, '')} first` : points < 20000 ? 'Sorted for you · within your points first' : 'Sorted for you · your taste + best value per point') : 'POINTX today · newest first, no filtering'}
           onWhy={openWhy}
         />
 

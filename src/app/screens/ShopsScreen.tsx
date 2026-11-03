@@ -8,7 +8,7 @@ import { Icon } from '@/components/ui/Icon';
 import { Disclaimer } from '@/components/ui/Card';
 import { settings } from '@/mock-data/settings';
 import { byType, chipById, searchOffers, shopChips } from '@/mock-data/offers';
-import { primaryReason, rankOffers, topSessionAffinity } from '@/services/sortEngine';
+import { headlineOrder, primaryReason, rankOffers, topSessionAffinity } from '@/services/sortEngine';
 import type { ScoredOffer } from '@/types';
 import { cn } from '@/hooks/utils';
 
@@ -18,10 +18,10 @@ export function ShopsScreen() {
   const p = appUserProfile;
   const live = topSessionAffinity(sessionAffinity);
 
-  // Tab order: persona default, with the live top affinity pulled forward for new members.
+  // Tab order: persona default, with the live top affinity pulled forward (after All / Deal).
   const chips = useMemo(() => {
     const base = p.shopChips.map((id) => chipById(id)!).filter(Boolean);
-    if (p.homeVariant !== 'newMember' || !live) return base;
+    if (!live) return base;
     const hot = shopChips.find((c) => c.affinity === live);
     if (!hot || !base.includes(hot)) return base;
     const [deal, all] = base;
@@ -39,7 +39,7 @@ export function ShopsScreen() {
     }
     const chip = chipById(activeShopChip) ?? shopChips[1];
     const r = rankOffers(pool.filter(chip.match), rankContext, { diversify: false });
-    return { title: chip.label === 'All' ? 'All shops' : chip.label, ...r, semanticCount: 0 };
+    return { title: chip.label === 'All' ? 'All shops' : chip.label, ranked: headlineOrder(r.ranked, rankContext), excluded: r.excluded, semanticCount: 0 };
   }, [q, activeShopChip, rankContext]);
 
   useEffect(() => {

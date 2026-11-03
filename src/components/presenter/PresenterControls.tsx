@@ -10,7 +10,7 @@ import { cn, formatPoints } from '@/hooks/utils';
 
 const appUsers: { key: AppUser; label: string; sub: string }[] = [
   { key: 1, label: 'Mint · New member', sub: '1,250 welcome pts · first open · no card · no history' },
-  { key: 2, label: 'Korn · Returning SCB Wealth', sub: '186,420 pts · 24,000 expiring · dining · Japan · Apple' },
+  { key: 2, label: 'Korn · Returning SCB Wealth', sub: '186,420 pts · 24,000 expiring · loves eating out · Wealth' },
 ];
 
 /** Presenter story card summarising the selected persona for quick narration. */

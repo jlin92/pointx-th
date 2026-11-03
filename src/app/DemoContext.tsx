@@ -129,7 +129,7 @@ export function DemoProvider({ children }: { children: ReactNode }) {
   const [sortMode, setSortMode] = useState<SortMode>('dy');
   const [searchQuery, setSearchQuery] = useState('');
   const [activeShopChip, setActiveShopChip] = useState('s-all');
-  const [activeStoreChip, setActiveStoreChip] = useState('x-deal');
+  const [activeStoreChip, setActiveStoreChip] = useState('x-all');
   const [musePrefill, setMusePrefill] = useState<string | null>(null);
   const [bannerIndex, setBannerIndex] = useState(0);
   const [toast, setToast] = useState<string | null>(null);
@@ -191,7 +191,7 @@ export function DemoProvider({ children }: { children: ReactNode }) {
     setSortMode('dy');
     setSearchQuery('');
     setActiveShopChip('s-all');
-    setActiveStoreChip('x-deal');
+    setActiveStoreChip('x-all');
     setMusePrefill(null);
     setBannerIndex(0);
     setWhyOpen(false);
